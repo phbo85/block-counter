@@ -35,9 +35,9 @@ export const useBlockInfo = (chainId, block) => {
         }
       } catch (error) {
         console.log(error);
-        setBlockInfo({ data: null, error });
+        setBlockInfo({ data: blockInfo.data, error });
       }
-    }, 1000);
+    }, 2000);
 
     return () => {
       clearInterval(intervalId);

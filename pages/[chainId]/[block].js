@@ -7,10 +7,6 @@ export default function Test() {
   const { chainId, block } = query;
   const { error, data } = useBlockInfo(chainId, block);
 
-  if (error) {
-    return <div>error</div>;
-  }
-
   return (
     <>
       <Countdown {...data} />
