@@ -10,15 +10,15 @@ import {
   useColorMode,
   chakra,
   Spacer,
+  Heading,
 } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
-import Wallet from './Wallet';
 
-const Header = ({ color, logo }) => {
+const Header = ({ name, block }) => {
   const { toggleColorMode: toggleMode } = useColorMode();
   const text = useColorModeValue('dark', 'light');
   const SwitchIcon = useColorModeValue(MoonIcon, SunIcon);
-  const bg = useColorModeValue('white', 'gray.800');
+  const bg = useColorModeValue('m', 'gray.800');
   const ref = React.useRef();
 
   const cl = useColorModeValue('gray.800', 'white');
@@ -31,7 +31,7 @@ const Header = ({ color, logo }) => {
         transition="box-shadow 0.2s"
         bg={bg}
         borderTop="6px solid"
-        borderTopColor={`${color}.400`}
+        borderTopColor={`brand.400`}
         w="full"
         overflowY="hidden"
       >
@@ -44,25 +44,11 @@ const Header = ({ color, logo }) => {
             justifyContent="space-between"
           >
             <Flex align="flex-start">
-              <Link href="/">
-                <Button
-                  bg={bg}
-                  color="gray.500"
-                  display="inline-flex"
-                  alignItems="center"
-                  fontSize="md"
-                  _hover={{ color: cl }}
-                  _focus={{ boxShadow: 'none' }}
-                >
-                  Home
-                </Button>
-              </Link>
+              <Heading>
+                {name} block {block} estimation
+              </Heading>
             </Flex>
 
-            <Spacer />
-            {logo && <Image src={logo} alt="logo" height={25} width={25} />}
-            <Spacer />
-            <Wallet />
             <Flex justify="flex-end" align="center" color="gray.400">
               <IconButton
                 size="md"

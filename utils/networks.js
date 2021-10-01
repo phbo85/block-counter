@@ -501,8 +501,8 @@ export default [
   },
   {
     chainId: 137,
-    name: 'Matic(Polygon) Mainnet',
-    rpc: 'https://rpc-mainnet.matic.network',
+    name: 'Polygon Mainnet',
+    rpc: 'https://polygon-rpc.com',
     nativeCurrency: {
       name: 'Matic',
       symbol: 'MATIC',
