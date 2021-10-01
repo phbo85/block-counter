@@ -1,0 +1,554 @@
+[
+	{
+		"anonymous": false,
+		"inputs": [
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "previousOwner",
+				"type": "address"
+			},
+			{
+				"indexed": true,
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "OwnershipTransferred",
+		"type": "event"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newOwner",
+				"type": "address"
+			}
+		],
+		"name": "addOwner",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "toAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "address[]",
+				"name": "path",
+				"type": "address[]"
+			},
+			{
+				"internalType": "uint256",
+				"name": "totalSpend",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "txSpend",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "txQty",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "routerAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "pairAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "blockNo",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "timestamp",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "senderAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "max",
+				"type": "uint256"
+			}
+		],
+		"name": "buy",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "blockNo",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "blockTime",
+				"type": "uint256"
+			}
+		],
+		"name": "checkBlock",
+		"outputs": [],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "blockNo",
+				"type": "uint256"
+			}
+		],
+		"name": "checkBlockNo",
+		"outputs": [],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "blockTime",
+				"type": "uint256"
+			}
+		],
+		"name": "checkBlockTime",
+		"outputs": [],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "usdcAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "deposit",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "token",
+				"type": "address"
+			}
+		],
+		"name": "distribute",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"components": [
+					{
+						"internalType": "address",
+						"name": "toAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address[]",
+						"name": "path",
+						"type": "address[]"
+					},
+					{
+						"internalType": "uint256",
+						"name": "totalAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "txAmount",
+						"type": "uint256"
+					},
+					{
+						"internalType": "uint256",
+						"name": "txQty",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "fromAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "pairAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "price",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "senderAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "address",
+						"name": "routerAddress",
+						"type": "address"
+					},
+					{
+						"internalType": "uint256",
+						"name": "maxPrice",
+						"type": "uint256"
+					}
+				],
+				"internalType": "struct PoolSwap.SwapInfo",
+				"name": "swapInfo",
+				"type": "tuple"
+			}
+		],
+		"name": "doSwap",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "index",
+				"type": "uint256"
+			}
+		],
+		"name": "getDeposits",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "depositedUSDC",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"internalType": "struct Pool.pooler",
+				"name": "poolerDeposit",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getInfo",
+		"outputs": [
+			{
+				"components": [
+					{
+						"internalType": "uint256",
+						"name": "depositedUSDC",
+						"type": "uint256"
+					},
+					{
+						"internalType": "address",
+						"name": "user",
+						"type": "address"
+					}
+				],
+				"internalType": "struct Pool.pooler",
+				"name": "poolInfo",
+				"type": "tuple"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getTotalDeposits",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "totalDeposited",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getTreasuryAddress",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "feeddress",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getTreasuryFee",
+		"outputs": [
+			{
+				"internalType": "uint256",
+				"name": "feePercent",
+				"type": "uint256"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getUSDCAddress",
+		"outputs": [
+			{
+				"internalType": "address",
+				"name": "usdc",
+				"type": "address"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "getUsers",
+		"outputs": [
+			{
+				"internalType": "address[]",
+				"name": "allUsers",
+				"type": "address[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "owner",
+		"outputs": [
+			{
+				"internalType": "address[]",
+				"name": "",
+				"type": "address[]"
+			}
+		],
+		"stateMutability": "view",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "toAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "address[]",
+				"name": "path",
+				"type": "address[]"
+			},
+			{
+				"internalType": "uint256",
+				"name": "txSpend",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "txQty",
+				"type": "uint256"
+			},
+			{
+				"internalType": "address",
+				"name": "routerAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "pairAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "blockNo",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "timestamp",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "max",
+				"type": "uint256"
+			}
+		],
+		"name": "poolBuy",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "fromAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "toAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "address[]",
+				"name": "path",
+				"type": "address[]"
+			},
+			{
+				"internalType": "address",
+				"name": "routerAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "address",
+				"name": "pairAddress",
+				"type": "address"
+			},
+			{
+				"internalType": "uint256",
+				"name": "totalPercent",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "txPercent",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "blockNo",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "timestamp",
+				"type": "uint256"
+			},
+			{
+				"internalType": "uint256",
+				"name": "max",
+				"type": "uint256"
+			}
+		],
+		"name": "sell",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "newAddress",
+				"type": "address"
+			}
+		],
+		"name": "setTreasuryAddress",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "newFee",
+				"type": "uint256"
+			}
+		],
+		"name": "setTreasuryFee",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "usdcAdd",
+				"type": "address"
+			}
+		],
+		"name": "setUSDCAddress",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [],
+		"name": "withDrawAllDeposits",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "address",
+				"name": "tokenAddress",
+				"type": "address"
+			}
+		],
+		"name": "withDrawAllTokens",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	},
+	{
+		"inputs": [
+			{
+				"internalType": "uint256",
+				"name": "withdrawAmount",
+				"type": "uint256"
+			}
+		],
+		"name": "withDrawMyDeposits",
+		"outputs": [],
+		"stateMutability": "nonpayable",
+		"type": "function"
+	}
+]
