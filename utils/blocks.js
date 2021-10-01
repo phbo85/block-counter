@@ -1,11 +1,32 @@
 import web3 from 'web3';
-import { NetworkConfig } from './index';
+import networkConfig from './networks';
 import { useState, useEffect } from 'react';
+
+/* export const processTest = () => {
+  return ex.reduce(
+    (
+      acc,
+      { chainId, name, rpc, nativeCurrency, explorers = [{ url: '' }] }
+    ) => {
+      return [
+        ...acc,
+        {
+          chainId,
+          name,
+          rpc: rpc[0],
+          nativeCurrency,
+          explorer: explorers[0].url,
+        },
+      ];
+    },
+    []
+  );
+}; */
 
 export const useBlockInfo = (chainId, block) => {
   const [blockInfo, setBlockInfo] = useState({ error: null, data: null });
 
-  useEffect(async () => {
+  useEffect(() => {
     const intervalId = setInterval(async () => {
       try {
         if ((chainId, block)) {
@@ -16,18 +37,23 @@ export const useBlockInfo = (chainId, block) => {
         console.log(error);
         setBlockInfo({ data: null, error });
       }
-    }, 2000);
+    }, 1000);
 
-    return () => clearInterval(intervalId);
+    return () => {
+      clearInterval(intervalId);
+    };
   }, [block, chainId]);
 
   return blockInfo;
 };
 export const getBlockInfo = async (chainId, blockTarget) => {
-  const { rpc } = NetworkConfig[chainId];
+  const { rpc } =
+    networkConfig.find((chain) => chain.chainId === Number(chainId)) || {};
+
   if (!rpc) {
     throw 'unknown network';
   }
+
   const instance = new web3(new web3.providers.HttpProvider(rpc));
 
   const currentBlock = await instance.eth.getBlockNumber();
