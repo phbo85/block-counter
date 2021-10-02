@@ -1,16 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import {
-  Box,
-  Stat,
-  StatLabel,
-  StatNumber,
-  StatHelpText,
-  StatArrow,
-  StatGroup,
-  Skeleton,
-  VStack,
-} from '@chakra-ui/react';
-
+import { Box, SimpleGrid, Skeleton, VStack } from '@chakra-ui/react';
+import StatsCard from './StatCard';
 const Countdown = ({
   days,
   hours,
@@ -22,81 +12,69 @@ const Countdown = ({
   totalSeconds = 0,
 }) => {
   const date = new Date(new Date().getTime() + totalSeconds * 1000);
+  const isLoading = !days && days !== 0;
   return (
-    <VStack spacing="24px" align="center">
-      <StatGroup>
-        <Stat m="2">
-          {days || days === 0 ? (
-            <StatNumber>
-              {date.toLocaleDateString()} {date.toLocaleTimeString()}
-            </StatNumber>
-          ) : (
-            <Skeleton height="36px" width="120px" />
-          )}
-          <StatLabel>estimated date</StatLabel>
-        </Stat>
-      </StatGroup>
-      <StatGroup>
-        <Stat mx="4">
-          {days || days === 0 ? (
-            <StatNumber>{days}</StatNumber>
-          ) : (
-            <Skeleton height="36px" width="48px" />
-          )}
-          <StatLabel>days</StatLabel>
-        </Stat>
-        <Stat mx="4">
-          {hours || hours === 0 ? (
-            <StatNumber>{hours}</StatNumber>
-          ) : (
-            <Skeleton height="36px" width="48px" />
-          )}
-          <StatLabel>hours</StatLabel>
-        </Stat>
-        <Stat mx="4">
-          {minutes || minutes === 0 ? (
-            <StatNumber>{minutes}</StatNumber>
-          ) : (
-            <Skeleton height="36px" width="48px" />
-          )}
-          <StatLabel>minutes</StatLabel>
-        </Stat>
-        <Stat mx="4">
-          {seconds || seconds === 0 ? (
-            <StatNumber>{seconds}</StatNumber>
-          ) : (
-            <Skeleton height="36px" width="48px" />
-          )}
-          <StatLabel>seconds</StatLabel>
-        </Stat>
-      </StatGroup>
-
-      <StatGroup>
-        <Stat mx="4">
-          {currentBlock || currentBlock === 0 ? (
-            <StatNumber>{currentBlock}</StatNumber>
-          ) : (
-            <Skeleton height="36px" width="150px" />
-          )}
-          <StatLabel>Current Block</StatLabel>
-        </Stat>
-        <Stat mx="4">
-          {blockLeft || blockLeft === 0 ? (
-            <StatNumber>{blockLeft}</StatNumber>
-          ) : (
-            <Skeleton height="36px" width="150px" />
-          )}
-          <StatLabel>Blocks left</StatLabel>
-        </Stat>
-        <Stat mx="4">
-          {avgTime || avgTime === 0 ? (
-            <StatNumber>{avgTime}</StatNumber>
-          ) : (
-            <Skeleton height="36px" width="100px" />
-          )}
-          <StatLabel>Average blocktime</StatLabel>
-        </Stat>
-      </StatGroup>
+    <VStack spacing="24px" align="center" mb="8">
+      <StatsCard
+        title="Estimated date"
+        stat={`${date.toLocaleDateString()} ${date.toLocaleTimeString()}`}
+        showSkeleton={isLoading}
+        skeletonHeight="36px"
+        skeletonWidth="120px"
+      />
+      <SimpleGrid columns={{ base: 1, md: 4 }} spacing={{ base: 5, lg: 8 }}>
+        <StatsCard
+          title="Days"
+          stat={days}
+          showSkeleton={isLoading}
+          skeletonHeight="36px"
+          skeletonWidth="48px"
+        />
+        <StatsCard
+          title="Hours"
+          stat={hours}
+          showSkeleton={isLoading}
+          skeletonHeight="36px"
+          skeletonWidth="48px"
+        />
+        <StatsCard
+          title="Minutes"
+          stat={minutes}
+          showSkeleton={isLoading}
+          skeletonHeight="36px"
+          skeletonWidth="48px"
+        />
+        <StatsCard
+          title="Seconds"
+          stat={seconds}
+          showSkeleton={isLoading}
+          skeletonHeight="36px"
+          skeletonWidth="48px"
+        />
+      </SimpleGrid>
+      <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
+        <StatsCard
+          title="Current block"
+          stat={currentBlock}
+          showSkeleton={isLoading}
+          skeletonHeight="36px"
+          skeletonWidth="150px"
+        />
+        <StatsCard
+          title="Blocks left"
+          stat={blockLeft}
+          showSkeleton={isLoading}
+          skeletonHeight="36px"
+          skeletonWidth="150px"
+        />
+        <StatsCard
+          title="Average blocktime"
+          stat={avgTime}
+          showSkeleton={isLoading}
+          skeletonHeight="36px"
+          skeletonWidth="100px"
+        />
+      </SimpleGrid>
     </VStack>
   );
 };

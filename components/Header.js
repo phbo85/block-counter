@@ -14,14 +14,12 @@ import {
 } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
 
-const Header = ({ name, block }) => {
+const Header = () => {
   const { toggleColorMode: toggleMode } = useColorMode();
   const text = useColorModeValue('dark', 'light');
   const SwitchIcon = useColorModeValue(MoonIcon, SunIcon);
   const bg = useColorModeValue('m', 'gray.800');
   const ref = React.useRef();
-
-  const cl = useColorModeValue('gray.800', 'white');
 
   return (
     <React.Fragment>
@@ -44,9 +42,7 @@ const Header = ({ name, block }) => {
             justifyContent="space-between"
           >
             <Flex align="flex-start">
-              <Heading>
-                {name} block {block} estimation
-              </Heading>
+              <Heading size="sm">Block countdown estimation</Heading>
             </Flex>
 
             <Flex justify="flex-end" align="center" color="gray.400">

@@ -3,6 +3,8 @@ import Countdown from '../../components/Countdown';
 import { useBlockInfo } from '../../utils/blocks';
 import networkConfig from '../../utils/networks';
 import Header from '../../components/Header';
+import InfoSection from '../../components/InfoSection';
+import Hero from '../../components/Hero';
 
 export default function Test() {
   const { query } = useRouter();
@@ -13,8 +15,10 @@ export default function Test() {
 
   return (
     <>
-      <Header name={name} block={block} />
+      <Header />
+      <Hero name={name} block={block} />
       <Countdown {...data} />
+      <InfoSection />
     </>
   );
 }
