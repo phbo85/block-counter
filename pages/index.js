@@ -1,3 +1,9 @@
+import ChainList from '../components/ChainList';
+
 export default function Home() {
-  return <div>empty</div>;
+  return (
+    <div>
+      <ChainList />
+    </div>
+  );
 }
