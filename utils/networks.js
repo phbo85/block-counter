@@ -2,7 +2,7 @@ export default [
   {
     chainId: 1,
     name: 'Ethereum Mainnet',
-    rpc: 'https://mainnet.infura.io/v3/${INFURA_API_KEY}',
+    rpc: 'https://cloudflare-eth.com',
     nativeCurrency: {
       name: 'Ether',
       symbol: 'ETH',
