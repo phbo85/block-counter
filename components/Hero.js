@@ -1,14 +1,5 @@
 import React from 'react';
-import {
-  chakra,
-  Box,
-  useColorModeValue,
-  Button,
-  Stack,
-  Image,
-  Text,
-  Icon,
-} from '@chakra-ui/react';
+import { chakra, Box, useColorModeValue, Text } from '@chakra-ui/react';
 
 const Hero = ({ name, block }) => {
   return (

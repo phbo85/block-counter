@@ -2,54 +2,63 @@ import web3 from 'web3';
 import networkConfig from './networks';
 import { useState, useEffect } from 'react';
 
-/* export const processTest = () => {
-  return ex.reduce(
-    (
-      acc,
-      { chainId, name, rpc, nativeCurrency, explorers = [{ url: '' }] }
-    ) => {
-      return [
-        ...acc,
-        {
-          chainId,
-          name,
-          rpc: rpc[0],
-          nativeCurrency,
-          explorer: explorers[0].url,
-        },
-      ];
-    },
-    []
-  );
-}; */
+export const isValidBlock = (block) => block && /^\d+$/.test(block);
+export const isValidChainId = (chainId) =>
+  chainId && networkConfig.find((chain) => chain.chainId === Number(chainId));
 
-export const useBlockInfo = (chainId, block) => {
+export const useNetworkConfig = (chainId) => {
+  const [network, setNetwork] = useState({ data: null, error: null });
+
+  useEffect(() => {
+    if (chainId) {
+      const config = networkConfig.find(
+        (chain) => chain.chainId === Number(chainId)
+      );
+
+      if (config) {
+        setNetwork({ data: config, error: null });
+      } else {
+        setNetwork({ data: null, error: true });
+      }
+    }
+  }, [chainId]);
+
+  return network;
+};
+
+export const useBlockInfo = (rpc, block) => {
   const [blockInfo, setBlockInfo] = useState({ error: null, data: null });
+  let errorCount = 0;
 
   useEffect(() => {
     const intervalId = setInterval(async () => {
+      if (errorCount > 5) {
+        clearInterval(intervalId);
+        setBlockInfo({ data: null, error: 'there was an error' });
+      }
+
       try {
-        if ((chainId, block)) {
-          const data = await getBlockInfo(chainId, block);
+        if (rpc && block) {
+          const data = await getBlockInfo(rpc, block);
           setBlockInfo({ data, error: null });
         }
       } catch (error) {
-        console.log(error);
-        setBlockInfo({ data: blockInfo.data, error });
+        const { message = '' } = error;
+        console.log(rpc, message);
+        errorCount++;
+        setBlockInfo({ data: null, error });
       }
     }, 2000);
 
     return () => {
       clearInterval(intervalId);
     };
-  }, [block, chainId]);
+  }, [block, rpc, errorCount]);
 
   return blockInfo;
 };
-export const getBlockInfo = async (chainId, blockTarget) => {
-  const { rpc } =
-    networkConfig.find((chain) => chain.chainId === Number(chainId)) || {};
 
+const getBlockInfo = async (rpc, blockTarget) => {
   if (!rpc) {
     throw 'unknown network';
   }

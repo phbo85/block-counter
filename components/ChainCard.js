@@ -7,8 +7,8 @@ const ChainCard = ({ chainId, name }) => {
       key={chainId}
       maxW="xs"
       mx="auto"
-      px={{ base: 1, md: 2 }}
-      py={'2'}
+      px={{ base: 2, md: 4 }}
+      py={'4'}
       shadow={'2xl'}
       border={'1px solid'}
       borderColor={useColorModeValue('gray.800', 'gray.500')}

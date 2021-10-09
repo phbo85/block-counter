@@ -1,9 +1,13 @@
+import Layout from '../components/Layout';
 import ChainList from '../components/ChainList';
+import Title from '../components/Title';
 
 export default function Home() {
   return (
-    <div>
+    <Layout>
+      <Title>Please select a blockchain to get started.</Title>
+
       <ChainList />
-    </div>
+    </Layout>
   );
 }

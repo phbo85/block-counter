@@ -1,15 +1,12 @@
 import React from 'react';
-import Image from 'next/image';
+import Link from 'next/link';
 
 import {
   Flex,
   IconButton,
-  Button,
-  Link,
   useColorModeValue,
   useColorMode,
   chakra,
-  Spacer,
   Heading,
 } from '@chakra-ui/react';
 import { MoonIcon, SunIcon } from '@chakra-ui/icons';
@@ -22,45 +19,50 @@ const Header = () => {
   const ref = React.useRef();
 
   return (
-    <React.Fragment>
-      <chakra.header
-        ref={ref}
-        shadow={'sm'}
-        transition="box-shadow 0.2s"
-        bg={bg}
-        borderTop="6px solid"
-        borderTopColor={`brand.400`}
-        w="full"
-        overflowY="hidden"
-      >
-        <chakra.div h="4.5rem" mx="auto" maxW="1200px">
-          <Flex
-            w="full"
-            h="full"
-            px="6"
-            alignItems="center"
-            justifyContent="space-between"
-          >
-            <Flex align="flex-start">
-              <Heading size="sm">Block countdown estimation</Heading>
-            </Flex>
-
-            <Flex justify="flex-end" align="center" color="gray.400">
-              <IconButton
-                size="md"
-                fontSize="lg"
-                aria-label={`Switch to ${text} mode`}
-                variant="ghost"
-                color="current"
-                ml={{ base: '0', md: '3' }}
-                onClick={toggleMode}
-                icon={<SwitchIcon />}
-              />
-            </Flex>
+    <chakra.header
+      ref={ref}
+      shadow={'sm'}
+      transition="box-shadow 0.2s"
+      bg={bg}
+      borderTop="6px solid"
+      borderTopColor={`brand.400`}
+      w="full"
+      overflowY="hidden"
+      style={{
+        borderImage: 'linear-gradient(to-r, #ff8800, #b026ff)',
+      }}
+    >
+      <chakra.div h="4.5rem" mx="auto" maxW="1200px">
+        <Flex
+          w="full"
+          h="full"
+          px="6"
+          alignItems="center"
+          justifyContent="space-between"
+        >
+          <Flex align="flex-start">
+            <Link href={'/'} passHref={true}>
+              <a>
+                <Heading size="sm">Block countdown estimation</Heading>
+              </a>
+            </Link>
           </Flex>
-        </chakra.div>
-      </chakra.header>
-    </React.Fragment>
+
+          <Flex justify="flex-end" align="center" color="gray.400">
+            <IconButton
+              size="md"
+              fontSize="lg"
+              aria-label={`Switch to ${text} mode`}
+              variant="ghost"
+              color="current"
+              ml={{ base: '0', md: '3' }}
+              onClick={toggleMode}
+              icon={<SwitchIcon />}
+            />
+          </Flex>
+        </Flex>
+      </chakra.div>
+    </chakra.header>
   );
 };
 

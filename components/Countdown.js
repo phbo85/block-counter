@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useMemo } from 'react';
-import { Box, SimpleGrid, Skeleton, VStack } from '@chakra-ui/react';
+import React from 'react';
+import { SimpleGrid, VStack } from '@chakra-ui/react';
 import StatsCard from './StatCard';
 const Countdown = ({
   days,
