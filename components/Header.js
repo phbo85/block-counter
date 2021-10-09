@@ -24,12 +24,14 @@ const Header = () => {
       shadow={'sm'}
       transition="box-shadow 0.2s"
       bg={bg}
-      borderTop="6px solid"
-      borderTopColor={`brand.400`}
       w="full"
       overflowY="hidden"
-      style={{
-        borderImage: 'linear-gradient(to-r, #ff8800, #b026ff)',
+      _before={{
+        content: '" "',
+        position: 'absolute',
+        width: '100%',
+        height: '4px',
+        background: 'linear-gradient(90deg, #ff8800, #b026ff)',
       }}
     >
       <chakra.div h="4.5rem" mx="auto" maxW="1200px">
