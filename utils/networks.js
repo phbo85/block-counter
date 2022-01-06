@@ -1869,7 +1869,7 @@ export default [
   {
     chainId: 1313161554,
     name: 'Aurora MainNet',
-    rpc: 'https://rpc.mainnet.aurora.dev:8545',
+    rpc: 'https://mainnet.aurora.dev',
     nativeCurrency: {
       name: 'Ether',
       symbol: 'aETH',
