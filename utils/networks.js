@@ -915,16 +915,6 @@ export default [
   },
 
   {
-    chainId: 1284,
-    name: 'Moonbeam',
-    nativeCurrency: {
-      name: 'Glimmer',
-      symbol: 'GLMR',
-      decimals: 18,
-    },
-    explorer: '',
-  },
-  {
     chainId: 1285,
     name: 'Moonriver',
     rpc: 'https://rpc.moonriver.moonbeam.network',
@@ -1866,17 +1856,7 @@ export default [
     },
     explorer: '',
   },
-  {
-    chainId: 1313161554,
-    name: 'Aurora MainNet',
-    rpc: 'https://mainnet.aurora.dev',
-    nativeCurrency: {
-      name: 'Ether',
-      symbol: 'aETH',
-      decimals: 18,
-    },
-    explorer: '',
-  },
+
   {
     chainId: 1313161555,
     name: 'Aurora TestNet',
@@ -2008,5 +1988,99 @@ export default [
       decimals: 18,
     },
     explorer: 'https://frankenstein-explorer.oneledger.network',
+  },
+  {
+    name: 'Cronos Mainnet Beta',
+    chain: 'CRO',
+    rpc: ['https://evm-cronos.crypto.org'],
+    faucets: [],
+    nativeCurrency: {
+      name: 'Crypto.org Coin',
+      symbol: 'CRO',
+      decimals: 18,
+    },
+    infoURL: 'https://cronos.crypto.org',
+    shortName: 'cro',
+    chainId: 25,
+    networkId: 25,
+    explorers: [
+      {
+        name: 'Cronos Explorer',
+        url: 'https://cronos.crypto.org/explorer',
+        standard: 'none',
+      },
+    ],
+  },
+  {
+    name: 'Aurora MainNet',
+    chain: 'NEAR',
+    rpc: ['https://mainnet.aurora.dev'],
+    faucets: [],
+    nativeCurrency: {
+      name: 'Ether',
+      symbol: 'aETH',
+      decimals: 18,
+    },
+    infoURL: 'https://aurora.dev',
+    shortName: 'aurora',
+    chainId: 1313161554,
+    networkId: 1313161554,
+    explorers: [
+      {
+        name: 'explorer.aurora.dev',
+        url: 'https://explorer.mainnet.aurora.dev',
+        standard: 'EIP3091',
+      },
+    ],
+  },
+  {
+    name: 'Moonbeam',
+    chain: 'MOON',
+    rpc: ['https://rpc.api.moonbeam.network', 'wss://wss.api.moonbeam.network'],
+    faucets: [],
+    nativeCurrency: {
+      name: 'Glimmer',
+      symbol: 'GLMR',
+      decimals: 18,
+    },
+    infoURL: 'https://moonbeam.network/networks/moonbeam/',
+    shortName: 'mbeam',
+    chainId: 1284,
+    networkId: 1284,
+    explorers: [
+      {
+        name: 'blockscout',
+        url: 'https://blockscout.moonbeam.network',
+        standard: 'none',
+      },
+      {
+        name: 'moonscan',
+        url: 'https://moonbeam.moonscan.io',
+        standard: 'none',
+      },
+    ],
+  },
+  {
+    name: 'Emerald Paratime Mainnet',
+    chain: 'Emerald',
+    icon: 'oasis',
+    rpc: ['https://emerald.oasis.dev', 'wss://emerald.oasis.dev/ws'],
+    faucets: [],
+    nativeCurrency: {
+      name: 'Emerald Rose',
+      symbol: 'ROSE',
+      decimals: 18,
+    },
+    infoURL: 'https://docs.oasis.dev/general/developer-resources/overview',
+    shortName: 'oasis',
+    chainId: 42262,
+    networkId: 42262,
+    explorers: [
+      {
+        name: 'Emerald Paratime Mainnet Explorer',
+        url: 'https://explorer.emerald.oasis.dev',
+        standard: 'EIP3091',
+      },
+    ],
   },
 ];
