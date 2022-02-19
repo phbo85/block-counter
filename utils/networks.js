@@ -2014,7 +2014,7 @@ export default [
   {
     name: 'Aurora MainNet',
     chain: 'NEAR',
-    rpc: ['https://mainnet.aurora.dev'],
+    rpc: 'https://mainnet.aurora.dev',
     faucets: [],
     nativeCurrency: {
       name: 'Ether',
