@@ -57,7 +57,19 @@ export const useBlockInfo = (rpc, block) => {
 
   return blockInfo;
 };
+export const getCurrentBlock = async (rpc) => {
+  try {
+    const instance = new web3(new web3.providers.HttpProvider(rpc));
 
+    const currentBlock = await instance.eth.getBlockNumber();
+    console.log(currentBlock);
+    return currentBlock;
+  } catch (error) {
+    console.log(error);
+  }
+
+  return null;
+};
 const getBlockInfo = async (rpc, blockTarget) => {
   if (!rpc) {
     throw 'unknown network';

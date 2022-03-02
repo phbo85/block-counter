@@ -1,5 +1,12 @@
 import Link from 'next/link';
-import { chakra, Badge, Flex, useColorModeValue } from '@chakra-ui/react';
+import {
+  chakra,
+  Badge,
+  Flex,
+  IconButton,
+  useColorModeValue,
+} from '@chakra-ui/react';
+import { ArrowForwardIcon } from '@chakra-ui/icons';
 
 const ChainCard = ({ chainId, name }) => {
   return (
@@ -31,28 +38,26 @@ const ChainCard = ({ chainId, name }) => {
           {chainId}
         </Badge>
       </Flex>
-      <Link href={`/${chainId}`}>
-        <chakra.button
-          px={2}
-          py={1}
-          bg={useColorModeValue('gray.400', 'gray.700')}
-          fontSize="xs"
-          color={useColorModeValue('gray.700', 'gray.400')}
-          fontWeight="bold"
-          rounded="lg"
-          textTransform="uppercase"
-          _hover={{
-            bg: useColorModeValue('gray.700', 'gray.400'),
-            color: useColorModeValue('gray.400', 'gray.700'),
-          }}
-          _focus={{
-            bg: useColorModeValue('gray.700', 'gray.400'),
-            color: useColorModeValue('gray.400', 'gray.700'),
-          }}
-        >
-          Select
-        </chakra.button>
-      </Link>
+      <Flex justify="center">
+        <Link href={`/${chainId}`}>
+          <IconButton
+            variant="outline"
+            color={useColorModeValue('gray.700', 'gray.400')}
+            _hover={{
+              bgGradient: 'linear(to-r, #ff8800, #b026ff)',
+              color: useColorModeValue('gray.100', 'gray.900'),
+            }}
+            _focus={{
+              bgGradient: 'linear(to-r, #ff8800, #b026ff)',
+              color: useColorModeValue('gray.100', 'gray.900'),
+            }}
+            size="md"
+            width="50%"
+            fontSize={'1.5rem'}
+            icon={<ArrowForwardIcon />}
+          />
+        </Link>
+      </Flex>
     </Flex>
   );
 };

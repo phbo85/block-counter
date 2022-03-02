@@ -11,10 +11,12 @@ import Title from '../components/Title';
 import Button from '../components/Button';
 import Error from '../components/Error';
 import { useNetworkConfig } from '../utils/blocks';
+import useCurrentBlock from '../hooks/useCurrentBlock';
 
 const Chain = ({ chainId }) => {
-  const [block, setBlock] = useState();
   const { data, error } = useNetworkConfig(chainId);
+  const currentBlock = useCurrentBlock(chainId);
+  const [block, setBlock] = useState();
 
   if (error) {
     return <Error message="There was an error getting the block time." />;
@@ -50,6 +52,7 @@ const Chain = ({ chainId }) => {
             </Text>
           </>
         </Title>
+        <Text>Current Block: {currentBlock}</Text>
       </Box>
       <VStack spacing={5} m={4}>
         <NumberInput

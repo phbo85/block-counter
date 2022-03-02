@@ -2093,7 +2093,7 @@ export default [
       symbol: 'EVMOS',
       decimals: 18,
     },
-    rpc: 'https://ethereum.rpc.evmos.org',
+    rpc: 'https://eth.bd.evmos.org',
     faucets: [],
     infoURL: 'https://evmos.org',
   },
