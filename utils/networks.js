@@ -1992,7 +1992,7 @@ export default [
   {
     name: 'Cronos Mainnet Beta',
     chain: 'CRO',
-    rpc: ['https://evm-cronos.crypto.org'],
+    rpc: 'https://evm-cronos.crypto.org',
     faucets: [],
     nativeCurrency: {
       name: 'Crypto.org Coin',
@@ -2036,7 +2036,7 @@ export default [
   {
     name: 'Moonbeam',
     chain: 'MOON',
-    rpc: ['https://rpc.api.moonbeam.network', 'wss://wss.api.moonbeam.network'],
+    rpc: 'https://rpc.api.moonbeam.network',
     faucets: [],
     nativeCurrency: {
       name: 'Glimmer',
@@ -2064,7 +2064,7 @@ export default [
     name: 'Emerald Paratime Mainnet',
     chain: 'Emerald',
     icon: 'oasis',
-    rpc: ['https://emerald.oasis.dev', 'wss://emerald.oasis.dev/ws'],
+    rpc: 'https://emerald.oasis.dev',
     faucets: [],
     nativeCurrency: {
       name: 'Emerald Rose',
@@ -2082,5 +2082,19 @@ export default [
         standard: 'EIP3091',
       },
     ],
+  },
+  {
+    name: 'Evmos',
+    chainId: 9001,
+    shortName: 'evmos',
+    networkId: 9001,
+    nativeCurrency: {
+      name: 'Evmos',
+      symbol: 'EVMOS',
+      decimals: 18,
+    },
+    rpc: 'https://ethereum.rpc.evmos.org',
+    faucets: [],
+    infoURL: 'https://evmos.org',
   },
 ];
