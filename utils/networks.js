@@ -2097,4 +2097,18 @@ export default [
     faucets: [],
     infoURL: 'https://evmos.org',
   },
+  {
+    name: 'DogeChain',
+    chainId: 2000,
+    shortName: 'doge',
+    networkId: 2000,
+    nativeCurrency: {
+      name: 'doge',
+      symbol: 'doge',
+      decimals: 18,
+    },
+    rpc: 'https://rpc01-sg.dogechain.dog',
+    faucets: [],
+    infoURL: '',
+  },
 ];
