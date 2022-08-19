@@ -2111,4 +2111,18 @@ export default [
     faucets: [],
     infoURL: '',
   },
+  {
+    name: 'Redlight',
+    chainId: 2611,
+    shortName: 'redlight',
+    networkId: 2611,
+    nativeCurrency: {
+      name: 'REDLC',
+      symbol: 'REDLC',
+      decimals: 18,
+    },
+    rpc: 'https://dataseed2.redlightscan.finance/',
+    faucets: [],
+    infoURL: '',
+  },
 ];
