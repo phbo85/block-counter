@@ -1,5 +1,7 @@
 import React from 'react';
-import { chakra, Box, useColorModeValue, Text } from '@chakra-ui/react';
+import { Box } from '@chakra-ui/react';
+import Title from './Title';
+import Highlight from './Highlight';
 
 const Hero = ({ name, block }) => {
   return (
@@ -9,34 +11,10 @@ const Hero = ({ name, block }) => {
       mx="auto"
       textAlign={{ base: 'left', md: 'center' }}
     >
-      <chakra.h1
-        mb={6}
-        fontSize={{ base: '2xl', md: '3xl' }}
-        fontWeight="semi"
-        letterSpacing={{ base: 'normal', md: 'tight' }}
-        color={useColorModeValue('gray.900', 'gray.100')}
-      >
-        Countdown for block{' '}
-        <Text
-          display={{ base: 'block', lg: 'inline' }}
-          w="full"
-          bgClip="text"
-          bgGradient="linear-gradient(to right, #43cea2, #185a9d)"
-          fontWeight="extrabold"
-        >
-          {block}
-        </Text>{' '}
-        on{' '}
-        <Text
-          display={{ base: 'block', lg: 'inline' }}
-          w="full"
-          bgClip="text"
-          bgGradient="linear-gradient(to right, #43cea2, #185a9d)"
-          fontWeight="extrabold"
-        >
-          {name}
-        </Text>
-      </chakra.h1>
+      <Title>
+        Countdown for block <Highlight>{block}</Highlight> on{' '}
+        <Highlight>{name}</Highlight>
+      </Title>
     </Box>
   );
 };

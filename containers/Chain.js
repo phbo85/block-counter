@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { Box, Text, VStack } from '@chakra-ui/react';
 import Title from '../components/Title';
+import Highlight from '../components/Highlight';
 import Error from '../components/Error';
 import BlockSelect from '../components/BlockSelect';
 import { useNetworkConfig } from '../utils/blocks';
@@ -40,18 +41,7 @@ const Chain = ({ chainId }) => {
         textAlign={{ base: 'left', md: 'center' }}
       >
         <Title>
-          <>
-            <span>Enter a block for </span>
-            <Text
-              display={{ base: 'block', lg: 'inline' }}
-              w="full"
-              bgClip="text"
-              bgGradient="linear(to-r, #ff8800, #b026ff)"
-              fontWeight="extrabold"
-            >
-              {name}
-            </Text>
-          </>
+          Enter a block for <Highlight>{name}</Highlight>
         </Title>
         <Text>Current Block: {currentBlock}</Text>
       </Box>

@@ -14,6 +14,7 @@ const Countdown = ({
 }) => {
   const date = new Date(new Date().getTime() + totalSeconds * 1000);
   const isLoading = !days && days !== 0;
+
   return (
     <VStack spacing="4" align="center" mb="8" w="full" maxW="3xl">
       <StatsCard
