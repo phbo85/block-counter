@@ -1,8 +1,6 @@
 import { useRouter } from 'next/router';
-
 import Loader from '../../components/Loader';
-import { useNetworkConfig } from '../../utils/blocks';
-
+import useNetworkConfig from '../../hooks/useNetworkConfig';
 import Block from '../../containers/Block';
 import Layout from '../../components/Layout';
 import InfoSection from '../../components/InfoSection';

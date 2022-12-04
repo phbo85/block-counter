@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { useNetworkConfig } from '../utils/blocks';
+import useNetworkConfig from './useNetworkConfig';
 import { getCurrentBlock } from '../utils/blocks';
 
 const useCurrentBlock = (chainId) => {

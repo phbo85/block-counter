@@ -4,7 +4,7 @@ import Title from '../components/Title';
 import Highlight from '../components/Highlight';
 import Error from '../components/Error';
 import BlockSelect from '../components/BlockSelect';
-import { useNetworkConfig } from '../utils/blocks';
+import useNetworkConfig from '../hooks/useNetworkConfig';
 import useCurrentBlock from '../hooks/useCurrentBlock';
 
 const Chain = ({ chainId }) => {

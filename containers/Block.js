@@ -1,5 +1,5 @@
-import { useBlockInfo, isValidBlock } from '../utils/blocks';
-
+import { isValidBlock } from '../utils/blocks';
+import useBlockInfo from '../hooks/useBlockInfo';
 import Countdown from '../components/Countdown';
 import Error from '../components/Error';
 import Loader from '../components/Loader';
