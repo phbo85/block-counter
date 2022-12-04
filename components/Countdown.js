@@ -18,7 +18,12 @@ const Countdown = ({
     <VStack spacing="4" align="center" mb="8" w="full" maxW="3xl">
       <StatsCard
         title="Estimated date"
-        stat={`${date.toLocaleDateString()} ${date.toLocaleTimeString()}`}
+        stat={`${date.toLocaleDateString(undefined, {
+          weekday: 'short',
+          year: 'numeric',
+          month: 'short',
+          day: 'numeric',
+        })} ${date.toLocaleTimeString()}`}
         showSkeleton={isLoading}
         skeletonHeight="36px"
         skeletonWidth="120px"
