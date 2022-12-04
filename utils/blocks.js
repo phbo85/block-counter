@@ -1,6 +1,6 @@
 import web3 from 'web3';
 import networkConfig from './chains.json';
-import rpcOverWrite from './rpcOverWrite.json';
+import rpcOverWrite from './rpc-overWrite.json';
 
 export const isValidBlock = (block) => block && /^\d+$/.test(block);
 export const isValidChainId = (chainId) =>
