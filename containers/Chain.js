@@ -1,22 +1,22 @@
-import { useState } from 'react';
-import Link from 'next/link';
-import {
-  Box,
-  Text,
-  NumberInput,
-  NumberInputField,
-  VStack,
-} from '@chakra-ui/react';
+import { useEffect, useState } from 'react';
+import { Box, Text, VStack } from '@chakra-ui/react';
 import Title from '../components/Title';
-import Button from '../components/Button';
 import Error from '../components/Error';
+import BlockSelect from '../components/BlockSelect';
 import { useNetworkConfig } from '../utils/blocks';
 import useCurrentBlock from '../hooks/useCurrentBlock';
 
 const Chain = ({ chainId }) => {
   const { data, error } = useNetworkConfig(chainId);
-  const currentBlock = useCurrentBlock(chainId);
-  const [block, setBlock] = useState();
+  const { currentBlock, refetchCurrentBlock } = useCurrentBlock(chainId);
+  const [block, setBlock] = useState(currentBlock);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      refetchCurrentBlock();
+    }, 2000);
+    return () => clearInterval(interval);
+  }, [refetchCurrentBlock]);
 
   if (error) {
     return <Error message="There was an error getting the block time." />;
@@ -26,6 +26,7 @@ const Chain = ({ chainId }) => {
     return <>Loading...</>;
   }
   const { name } = data;
+
   const onChange = (e) => {
     setBlock(e.target.value);
   };
@@ -55,23 +56,12 @@ const Chain = ({ chainId }) => {
         <Text>Current Block: {currentBlock}</Text>
       </Box>
       <VStack spacing={5} m={4}>
-        <NumberInput
-          placeholder="Enter a block number"
-          size="lg"
-          variant="filled"
-          min={1}
-          onChange={(valueString) => setBlock(valueString)}
-        >
-          <NumberInputField
-            placeholder="Enter a block number"
-            onChange={onChange}
-          />
-        </NumberInput>
-        <Link href={`/${chainId}/${block}`}>
-          <a>
-            <Button text="Estimate" disabled={!block} />
-          </a>
-        </Link>
+        <BlockSelect
+          block={block || currentBlock}
+          chainId={chainId}
+          onChange={onChange}
+          setBlock={setBlock}
+        />
       </VStack>
     </>
   );

@@ -1,22 +1,37 @@
-import { Box, Container, Heading, Text, Stack } from '@chakra-ui/react';
+import { Box, Heading, Text, Stack, useColorModeValue } from '@chakra-ui/react';
 
 const InfoSection = () => {
   return (
-    <Box p={4}>
-      <Stack spacing={4} as={Container} maxW={'3xl'}>
-        <Heading fontSize={'xl'}>How is this calculated?</Heading>
-        <Text color={'gray.600'} fontSize={'md'}>
+    <Stack spacing="0" maxW="3xl" w="full">
+      <Heading
+        fontSize={'xl'}
+        border={'1px solid'}
+        borderColor={useColorModeValue('gray.800', 'gray.200')}
+        mb="-1px"
+        p="4"
+        w="full"
+      >
+        How is this calculated?
+      </Heading>
+      <Box
+        p="4"
+        mt="-1px"
+        border={'1px solid'}
+        borderColor={useColorModeValue('gray.800', 'gray.200')}
+      >
+        <Text fontSize={'md'}>
           You might experience slight inaccuracies given the way we estimate the
           time. Currently, we take the average time of the last 1000 blocks to
-          estimate how long it will take til the selected block is being reacht.
-          However, this can often change, especially if there&lsquo;s high load.
+          estimate how long it will take til the selected block is being
+          reached. However, this can often change, especially if there&lsquo;s
+          high load.
         </Text>
-        <Text color={'gray.600'} fontSize={'md'}>
+        <Text fontSize={'md'} mt="2">
           You&lsquo;ll get more accurate estimations by using the blockchain
           explorer of the chain you are querying, if available.
         </Text>
-      </Stack>
-    </Box>
+      </Box>
+    </Stack>
   );
 };
 

@@ -20,7 +20,7 @@ const ChainId = () => {
   if (!isValidChainId(chainId)) {
     return (
       <Layout>
-        <Error message={`${chainId} is not supported`} />{' '}
+        <Error message={`${chainId} is not supported`} />
       </Layout>
     );
   }

@@ -61,9 +61,7 @@ export const getCurrentBlock = async (rpc) => {
   try {
     const instance = new web3(new web3.providers.HttpProvider(rpc));
 
-    const currentBlock = await instance.eth.getBlockNumber();
-    console.log(currentBlock);
-    return currentBlock;
+    return await instance.eth.getBlockNumber();
   } catch (error) {
     console.log(error);
   }
@@ -89,7 +87,6 @@ const getBlockInfo = async (rpc, blockTarget) => {
 
   const actualTime = secondsToHms(timeSeconds);
 
-  console.log(actualTime);
   return {
     ...actualTime,
     totalSeconds: timeSeconds,

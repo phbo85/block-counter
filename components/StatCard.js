@@ -15,12 +15,11 @@ const StatsCard = ({
 }) => {
   return (
     <Stat
+      w="full"
       px={{ base: 4, md: 8 }}
       py={'5'}
-      shadow={'2xl'}
       border={'1px solid'}
-      borderColor={useColorModeValue('gray.800', 'gray.500')}
-      rounded={'lg'}
+      borderColor={useColorModeValue('gray.800', 'gray.200')}
     >
       <StatNumber fontSize={'2xl'} fontWeight={'medium'}>
         {showSkeleton ? (

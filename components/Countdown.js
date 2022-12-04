@@ -14,7 +14,7 @@ const Countdown = ({
   const date = new Date(new Date().getTime() + totalSeconds * 1000);
   const isLoading = !days && days !== 0;
   return (
-    <VStack spacing="24px" align="center" mb="8">
+    <VStack spacing="4" align="center" mb="8" w="full" maxW="3xl">
       <StatsCard
         title="Estimated date"
         stat={`${date.toLocaleDateString()} ${date.toLocaleTimeString()}`}
@@ -22,7 +22,7 @@ const Countdown = ({
         skeletonHeight="36px"
         skeletonWidth="120px"
       />
-      <SimpleGrid columns={{ base: 1, md: 4 }} spacing={{ base: 5, lg: 8 }}>
+      <SimpleGrid columns={{ base: 1, md: 4 }} spacing="4" w="full">
         <StatsCard
           title="Days"
           stat={days}
@@ -52,7 +52,7 @@ const Countdown = ({
           skeletonWidth="48px"
         />
       </SimpleGrid>
-      <SimpleGrid columns={{ base: 1, md: 3 }} spacing={{ base: 5, lg: 8 }}>
+      <SimpleGrid columns={{ base: 1, md: 3 }} spacing="4" w="full">
         <StatsCard
           title="Current block"
           stat={currentBlock}

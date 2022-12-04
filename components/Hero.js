@@ -21,7 +21,7 @@ const Hero = ({ name, block }) => {
           display={{ base: 'block', lg: 'inline' }}
           w="full"
           bgClip="text"
-          bgGradient="linear(to-r, #ff8800, #b026ff)"
+          bgGradient="linear-gradient(to right, #43cea2, #185a9d)"
           fontWeight="extrabold"
         >
           {block}
@@ -31,7 +31,7 @@ const Hero = ({ name, block }) => {
           display={{ base: 'block', lg: 'inline' }}
           w="full"
           bgClip="text"
-          bgGradient="linear(to-r, #ff8800, #b026ff)"
+          bgGradient="linear-gradient(to right, #43cea2, #185a9d)"
           fontWeight="extrabold"
         >
           {name}

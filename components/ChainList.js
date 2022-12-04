@@ -1,5 +1,17 @@
 import { useState, useEffect } from 'react';
-import { SimpleGrid, Input, VStack } from '@chakra-ui/react';
+import {
+  SimpleGrid,
+  Input,
+  InputRightElement,
+  InputGroup,
+  VStack,
+  Alert,
+  AlertTitle,
+  AlertDescription,
+  Button,
+  useColorModeValue,
+} from '@chakra-ui/react';
+import { CloseIcon } from '@chakra-ui/icons';
 import networkConfig from '../utils/networks';
 import ChainCard from './ChainCard';
 
@@ -29,22 +41,61 @@ const ChainList = () => {
   }, [searchTerm, setFiltered]);
 
   return (
-    <VStack spacing={5} m={4}>
-      <Input
-        placeholder="Search for blockchain name, token or id"
-        size="lg"
-        variant="filled"
-        onChange={onChange}
-      />
-      <SimpleGrid
-        columns={{ base: 1, md: 4 }}
-        spacing={{ base: 5, lg: 8 }}
-        m={2}
+    <VStack spacing={5} m={4} w="90vw">
+      <InputGroup
+        border="1px solid"
+        borderColor={useColorModeValue('gray.800', 'gray.200')}
+        w="full"
       >
+        <Input
+          placeholder="Search for blockchain name, token or id"
+          size="lg"
+          variant="filled"
+          onChange={onChange}
+          value={searchTerm}
+          _hover={{ outline: 'none', border: 'none' }}
+          _focus={{ outline: 'none', border: 'none' }}
+        />
+        <InputRightElement
+          h="full"
+          borderLeft="1px solid"
+          borderColor={useColorModeValue('gray.800', 'gray.200')}
+        >
+          <Button
+            variant="ghost"
+            h="full"
+            onClick={() => setSearchTerm('')}
+            disabled={!searchTerm}
+          >
+            <CloseIcon />
+          </Button>
+        </InputRightElement>
+      </InputGroup>
+      <SimpleGrid columns={{ base: 1, md: 4 }} m="2" spacing="4" w="full">
         {filtered.map(({ chainId, name }) => (
           <ChainCard chainId={chainId} name={name} key={chainId} />
         ))}
       </SimpleGrid>
+      {filtered.length === 0 && (
+        <Alert
+          mx="auto"
+          status="warning"
+          variant="subtle"
+          flexDirection="column"
+          alignItems="center"
+          justifyContent="center"
+          textAlign="center"
+          height="200px"
+        >
+          <AlertTitle mt={4} mb={1} fontSize="lg">
+            Sorry, we could not find any networks for your search
+          </AlertTitle>
+          <AlertDescription maxWidth="sm">
+            Please try again with a different search term. You can use the
+            blockchain name, token or id.
+          </AlertDescription>
+        </Alert>
+      )}
     </VStack>
   );
 };

@@ -1,27 +1,25 @@
 import { useColorModeValue, Button } from '@chakra-ui/react';
 
-const ButtonComponent = ({ onClick, text, disabled }) => (
+const ButtonComponent = ({ children, onClick, disabled, ...rest }) => (
   <Button
-    px={4}
-    py={2}
-    bg={useColorModeValue('gray.800', 'gray.200')}
-    fontSize="lg"
-    color={useColorModeValue('gray.200', 'gray.800')}
-    fontWeight="bold"
-    rounded="lg"
-    textTransform="uppercase"
+    w="full"
+    variant="outline"
+    color={useColorModeValue('gray.600', 'gray.400')}
+    fontWeight="300"
+    size="md"
+    borderRadius="0"
+    borderColor={useColorModeValue('gray.600', 'gray.400')}
+    role="group"
     _hover={{
-      bg: useColorModeValue('gray.700', 'gray.400'),
-      color: useColorModeValue('gray.400', 'gray.700'),
+      color: useColorModeValue('gray.900', 'gray.100'),
+      borderColor: useColorModeValue('gray.900', 'gray.100'),
     }}
-    _focus={{
-      bg: 'linear-gradient(to right, #ff8800, #b026ff)',
-      color: 'white',
-    }}
+    pos="relative"
     disabled={disabled}
     onClick={onClick}
+    {...rest}
   >
-    {text}
+    {children}
   </Button>
 );
 export default ButtonComponent;

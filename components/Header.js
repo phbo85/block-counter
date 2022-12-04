@@ -15,55 +15,57 @@ const Header = () => {
   const { toggleColorMode: toggleMode } = useColorMode();
   const text = useColorModeValue('dark', 'light');
   const SwitchIcon = useColorModeValue(MoonIcon, SunIcon);
-  const bg = useColorModeValue('m', 'gray.800');
-  const ref = React.useRef();
 
   return (
     <chakra.header
-      ref={ref}
-      shadow={'sm'}
+      shadow="sm"
       transition="box-shadow 0.2s"
-      bg={bg}
       w="full"
       overflowY="hidden"
-      _before={{
-        content: '" "',
-        position: 'absolute',
-        width: '100%',
-        height: '4px',
-        background: 'linear-gradient(90deg, #ff8800, #b026ff)',
-      }}
+      h="16"
     >
-      <chakra.div h="4.5rem" mx="auto" maxW="1200px">
-        <Flex
-          w="full"
-          h="full"
-          px="6"
-          alignItems="center"
-          justifyContent="space-between"
-        >
-          <Flex align="flex-start">
-            <Link href={'/'} passHref={true}>
-              <a>
-                <Heading size="sm">Block countdown estimation</Heading>
-              </a>
-            </Link>
-          </Flex>
-
-          <Flex justify="flex-end" align="center" color="gray.400">
-            <IconButton
-              size="md"
-              fontSize="lg"
-              aria-label={`Switch to ${text} mode`}
-              variant="ghost"
-              color="current"
-              ml={{ base: '0', md: '3' }}
-              onClick={toggleMode}
-              icon={<SwitchIcon />}
-            />
-          </Flex>
+      <Flex
+        w="full"
+        h="full"
+        alignItems="center"
+        justifyContent="space-between"
+        border="1px solid"
+        borderColor={useColorModeValue('gray.800', 'gray.200')}
+      >
+        <Flex align="flex-start" ml="4">
+          <Link href={'/'} passHref={true}>
+            <a>
+              <Heading fontWeight="300" size="lg">
+                Block countdown estimation
+              </Heading>
+            </a>
+          </Link>
         </Flex>
-      </chakra.div>
+
+        <Flex
+          justify="center"
+          align="center"
+          border="1px solid"
+          borderColor={useColorModeValue('gray.800', 'gray.200')}
+          h="calc(100% + 2px)"
+          w="16"
+          m="-1px"
+        >
+          <IconButton
+            h="full"
+            w="full"
+            fontSize="lg"
+            aria-label={`Switch to ${text} mode`}
+            variant="ghost"
+            color="current"
+            onClick={toggleMode}
+            icon={<SwitchIcon />}
+            _hover={{
+              bg: useColorModeValue('blackAlpha.200', 'whiteAlpha.200'),
+            }}
+          />
+        </Flex>
+      </Flex>
     </chakra.header>
   );
 };

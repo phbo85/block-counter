@@ -1,6 +1,8 @@
 import { Web3ReactProvider } from '@web3-react/core';
 import { Web3Provider } from '@ethersproject/providers';
 import { ChakraProvider } from '@chakra-ui/react';
+import '@fontsource/montserrat';
+import theme from '../styles/theme';
 
 function getLibrary(provider) {
   const library = new Web3Provider(provider);
@@ -11,7 +13,7 @@ function getLibrary(provider) {
 
 function App({ Component, pageProps }) {
   return (
-    <ChakraProvider>
+    <ChakraProvider theme={theme}>
       <Web3ReactProvider getLibrary={getLibrary}>
         <Component {...pageProps} />
       </Web3ReactProvider>

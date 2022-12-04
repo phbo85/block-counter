@@ -1,11 +1,13 @@
-import Link from 'next/link';
+import NextLink from 'next/link';
 import {
   chakra,
   Badge,
   Flex,
-  IconButton,
+  Box,
+  Link,
   useColorModeValue,
 } from '@chakra-ui/react';
+import Button from './Button';
 import { ArrowForwardIcon } from '@chakra-ui/icons';
 
 const ChainCard = ({ chainId, name }) => {
@@ -13,16 +15,16 @@ const ChainCard = ({ chainId, name }) => {
     <Flex
       key={chainId}
       maxW="xs"
-      mx="auto"
       px={{ base: 2, md: 4 }}
-      py={'4'}
-      shadow={'2xl'}
-      border={'1px solid'}
-      borderColor={useColorModeValue('gray.800', 'gray.500')}
-      rounded={'lg'}
+      py="4"
+      border="1px solid"
+      borderColor={useColorModeValue('gray.800', 'gray.200')}
       flexDir="column"
       justifyContent="space-between"
       width="100%"
+      _hover={{
+        background: useColorModeValue('blackAlpha.100', 'whiteAlpha.100'),
+      }}
     >
       <Flex justifyContent="space-between" alignItems="flex-start">
         <chakra.h2
@@ -34,29 +36,30 @@ const ChainCard = ({ chainId, name }) => {
         >
           {name}
         </chakra.h2>{' '}
-        <Badge ml="1" fontSize="0.8em" variant="outline" colorScheme="purple">
+        <Badge ml="1" fontSize="md" variant="solid" colorScheme="green">
           {chainId}
         </Badge>
       </Flex>
       <Flex justify="center">
-        <Link href={`/${chainId}`}>
-          <IconButton
-            variant="outline"
-            color={useColorModeValue('gray.700', 'gray.400')}
-            _hover={{
-              bgGradient: 'linear(to-r, #ff8800, #b026ff)',
-              color: useColorModeValue('gray.100', 'gray.900'),
-            }}
-            _focus={{
-              bgGradient: 'linear(to-r, #ff8800, #b026ff)',
-              color: useColorModeValue('gray.100', 'gray.900'),
-            }}
-            size="md"
-            width="50%"
-            fontSize={'1.5rem'}
-            icon={<ArrowForwardIcon />}
-          />
-        </Link>
+        <NextLink href={`/${chainId}`}>
+          <Link w="full" _hover={{ textDecoration: 'none' }}>
+            <Button>
+              <Box>Select</Box>
+              <ArrowForwardIcon
+                size="md"
+                width="50%"
+                borderRadius="0"
+                icon={<ArrowForwardIcon />}
+                color="transparent"
+                transition="color 0.2s ease-in-out"
+                _groupHover={{ color: 'inherit' }}
+                display={{ base: 'none', md: 'block' }}
+                pos="absolute"
+                left="50%"
+              />
+            </Button>
+          </Link>
+        </NextLink>
       </Flex>
     </Flex>
   );

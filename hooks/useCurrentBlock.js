@@ -17,7 +17,17 @@ const useCurrentBlock = (chainId) => {
     }
   }, [rpc]);
 
-  return currentBlock;
+  const refetchCurrentBlock = () => {
+    if (rpc) {
+      getCurrentBlock(rpc).then((block) => {
+        if (block) {
+          setCurrentBlock(block);
+        }
+      });
+    }
+  };
+
+  return { currentBlock, refetchCurrentBlock };
 };
 
 export default useCurrentBlock;
