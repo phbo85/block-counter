@@ -1,6 +1,7 @@
 import React from 'react';
 import { SimpleGrid, VStack } from '@chakra-ui/react';
 import StatsCard from './StatCard';
+
 const Countdown = ({
   days,
   hours,

@@ -1,10 +1,40 @@
-import web3 from 'web3';
-import networkConfig from './networks';
 import { useState, useEffect } from 'react';
+import web3 from 'web3';
+import networkConfig from './chains.json';
+import rpcOverWrite from './rpcOverWrite.json';
 
 export const isValidBlock = (block) => block && /^\d+$/.test(block);
 export const isValidChainId = (chainId) =>
   chainId && networkConfig.find((chain) => chain.chainId === Number(chainId));
+
+const ID_REGEX = /\$\{[^}]*\}/;
+const sanitizeURL = (url = '') => url.replace(ID_REGEX, '');
+
+const getRPC = ({ chainId, rpcs }) => {
+  const overwrite = rpcOverWrite?.[chainId];
+
+  if (overwrite) {
+    return overwrite;
+  }
+
+  if (!rpcs) {
+    return null;
+  }
+
+  if (rpcs.length === 1) {
+    return sanitizeURL(rpcs[0]);
+  }
+
+  return rpcs.reduce((acc, item) => {
+    const containsIdParam = item.match(ID_REGEX);
+
+    if (acc || containsIdParam?.length > 0) {
+      return acc;
+    }
+
+    return sanitizeURL(item);
+  }, null);
+};
 
 export const useNetworkConfig = (chainId) => {
   const [network, setNetwork] = useState({ data: null, error: null });
@@ -16,7 +46,13 @@ export const useNetworkConfig = (chainId) => {
       );
 
       if (config) {
-        setNetwork({ data: config, error: null });
+        setNetwork({
+          data: {
+            ...config,
+            rpc: getRPC({ chainId: config.chainId, rpcs: config.rpc }),
+          },
+          error: null,
+        });
       } else {
         setNetwork({ data: null, error: true });
       }
@@ -44,7 +80,7 @@ export const useBlockInfo = (rpc, block) => {
         }
       } catch (error) {
         const { message = '' } = error;
-        console.log(rpc, message);
+        console.error(rpc, message);
         errorCount++;
         setBlockInfo({ data: null, error });
       }
@@ -57,17 +93,19 @@ export const useBlockInfo = (rpc, block) => {
 
   return blockInfo;
 };
+
 export const getCurrentBlock = async (rpc) => {
   try {
     const instance = new web3(new web3.providers.HttpProvider(rpc));
 
     return await instance.eth.getBlockNumber();
   } catch (error) {
-    console.log(error);
+    console.error(error);
   }
 
   return null;
 };
+
 const getBlockInfo = async (rpc, blockTarget) => {
   if (!rpc) {
     throw 'unknown network';
@@ -76,12 +114,10 @@ const getBlockInfo = async (rpc, blockTarget) => {
   const instance = new web3(new web3.providers.HttpProvider(rpc));
 
   const currentBlock = await instance.eth.getBlockNumber();
-  const tenBlock = currentBlock - 1000;
   const currentBlockInfo = await instance.eth.getBlock(currentBlock);
-  const currentTimeStamp = currentBlockInfo.timestamp;
-  const tenBlockInfo = await instance.eth.getBlock(tenBlock);
-  const tenTimeStamp = tenBlockInfo.timestamp;
-  const avgTime = (currentTimeStamp - tenTimeStamp) / 1000;
+
+  const pastBlock = await instance.eth.getBlock(currentBlock - 1000);
+  const avgTime = (currentBlockInfo?.timestamp - pastBlock?.timestamp) / 1000;
   const blockLeft = blockTarget - currentBlock;
   const timeSeconds = blockLeft * avgTime;
 
@@ -97,10 +133,11 @@ const getBlockInfo = async (rpc, blockTarget) => {
 };
 
 const secondsToHms = (input = 0) => {
-  const days = Math.floor(input / (3600 * 24));
-  const hours = Math.floor((input % (3600 * 24)) / 3600);
-  const minutes = Math.floor((input % 3600) / 60);
-  const seconds = Math.floor(input % 60);
+  const round = input > 0 ? Math.floor : Math.ceil;
+  const days = round(input / (3600 * 24));
+  const hours = round((input % (3600 * 24)) / 3600);
+  const minutes = round((input % 3600) / 60);
+  const seconds = round(input % 60);
 
   return { days, hours, minutes, seconds };
 };

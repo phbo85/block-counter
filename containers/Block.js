@@ -20,11 +20,7 @@ const Block = ({ chain, block }) => {
     return <Loader />;
   }
 
-  return (
-    <>
-      <Countdown {...data} />
-    </>
-  );
+  return <Countdown {...data} />;
 };
 
 export default Block;

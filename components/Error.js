@@ -8,29 +8,24 @@ const Error = ({ message = 'There was an error.' }) => (
       maxW="sm"
       w="full"
       mx="auto"
-      bg={useColorModeValue('white', 'gray.700')}
-      shadow="md"
-      rounded="lg"
       overflow="hidden"
+      border={'1px solid'}
+      borderColor={useColorModeValue('gray.800', 'gray.200')}
     >
-      <Flex justifyContent="center" alignItems="center" w={16} bg="red.500">
+      <Flex
+        justifyContent="center"
+        alignItems="center"
+        w={16}
+        borderRight={'1px solid'}
+        borderColor={useColorModeValue('gray.800', 'gray.200')}
+      >
         <WarningIcon w={8} h={8} color="white" />
       </Flex>
 
       <Box mx={-3} py={2} px={4}>
         <Box mx={3}>
-          <chakra.span
-            color={useColorModeValue('red.500', 'red.400')}
-            fontWeight="bold"
-          >
-            Error
-          </chakra.span>
-          <chakra.p
-            color={useColorModeValue('gray.600', 'gray.200')}
-            fontSize="sm"
-          >
-            {message}
-          </chakra.p>
+          <chakra.span fontWeight="bold">Error</chakra.span>
+          <chakra.p fontSize="sm">{message}</chakra.p>
         </Box>
       </Box>
     </Flex>

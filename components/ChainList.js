@@ -12,11 +12,11 @@ import {
   useColorModeValue,
 } from '@chakra-ui/react';
 import { CloseIcon } from '@chakra-ui/icons';
-import networkConfig from '../utils/networks';
+import chains from '../utils/chains';
 import ChainCard from './ChainCard';
 
 const ChainList = () => {
-  const [filtered, setFiltered] = useState(networkConfig);
+  const [filtered, setFiltered] = useState(chains);
   const [searchTerm, setSearchTerm] = useState('');
 
   const onChange = (e) => {
@@ -24,7 +24,7 @@ const ChainList = () => {
   };
 
   useEffect(() => {
-    const filteredNetworks = networkConfig.filter(
+    const filteredNetworks = chains.filter(
       ({ chainId, name, nativeCurrency: { symbol } }) => {
         const searchSymbol = symbol.toLowerCase();
         const searchName = name.toLowerCase();
